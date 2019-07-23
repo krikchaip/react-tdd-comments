@@ -12,7 +12,7 @@ describe('<CommentCard />', () => {
       <CommentCard comment={comment} author={author} />
     )
 
-    expect(getByText(comment)).toBeVisible()
-    expect(getByText(`-${author}`)).toBeVisible()
+    expect(getByText(/React Testing Library is great/i)).toBeVisible()
+    expect(getByText(/Luke Ghenco/i)).toBeVisible()
   })
 })

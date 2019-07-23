@@ -12,7 +12,7 @@ function CommentCard(props) {
   return (
     <div className="comment-card">
       <div>{comment}</div>
-      <div className="author-tag">-{author}</div>
+      <div className="author-tag">- {author}</div>
     </div>
   )
 }
