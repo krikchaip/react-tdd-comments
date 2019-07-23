@@ -18,3 +18,24 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.comment-card {
+  height: 80px;
+  padding: 12px 24px;
+  margin: 24px;
+
+  position: relative;
+
+  font-family: 'Palatino';
+  font-style: italic;
+
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  border: 1px solid #767676;
+}
+
+.comment-card .author-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
