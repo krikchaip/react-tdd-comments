@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 import 'styles.css'
 
 import CommentList from 'components/CommentList'
+import CommentForm from 'components/CommentForm'
 
 function App() {
-  const comments = [
+  const [comments, setComments] = useState([
     {
       id: 1,
       comment: 'I do love writing tests',
@@ -17,9 +18,14 @@ function App() {
       comment: 'Nothing is better than a good comment app',
       author: 'Comment Hater'
     }
-  ]
+  ])
 
-  return <CommentList comments={comments} />
+  return (
+    <div>
+      <CommentForm />
+      <CommentList comments={comments} />
+    </div>
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
