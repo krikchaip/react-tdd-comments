@@ -4,7 +4,7 @@ import React, { useState } from 'react'
  * @param {Object} props
  * @param {(value: { comment: string, author: string }) => void} [props.onSubmit]
  */
-function CommentForm({ onSubmit }) {
+function CommentForm({ onSubmit = () => {} }) {
   const [comment, setComment] = useState('')
   const [author, setAuthor] = useState('')
 
@@ -12,6 +12,8 @@ function CommentForm({ onSubmit }) {
   function handleSubmit(e) {
     e.preventDefault()
     onSubmit({ comment, author })
+    setComment('')
+    setAuthor('')
   }
 
   return (

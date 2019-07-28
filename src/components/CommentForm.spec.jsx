@@ -25,20 +25,42 @@ describe('<CommentForm />', () => {
       expect(getByText(/Add Comment/i)).toBeEnabled()
     })
 
-    it('clicking button would call a submit handler', () => {
-      const handleSubmit = jest.fn()
+    describe('clicking button', () => {
+      it('would call a submit handler', () => {
+        const handleSubmit = jest.fn()
 
-      const { getByText, getByLabelText, getByPlaceholderText } = render(
-        <CommentForm onSubmit={handleSubmit} />
-      )
+        const { getByText, getByLabelText, getByPlaceholderText } = render(
+          <CommentForm onSubmit={handleSubmit} />
+        )
 
-      fireEvent.change(getByPlaceholderText(/Write something/i), comment)
-      fireEvent.change(getByLabelText(/Your Name/i), author)
-      fireEvent.click(getByText(/Add Comment/i))
+        fireEvent.change(getByPlaceholderText(/Write something/i), comment)
+        fireEvent.change(getByLabelText(/Your Name/i), author)
+        fireEvent.click(getByText(/Add Comment/i))
 
-      expect(handleSubmit).toBeCalledWith({
-        comment: 'test comment',
-        author: 'test author'
+        expect(handleSubmit).toBeCalledWith({
+          comment: 'test comment',
+          author: 'test author'
+        })
+      })
+
+      it('reset all form fields', () => {
+        const { getByText, getByLabelText, getByPlaceholderText } = render(
+          <CommentForm />
+        )
+
+        fireEvent.change(getByPlaceholderText(/Write something/i), comment)
+        fireEvent.change(getByLabelText(/Your Name/i), author)
+        fireEvent.click(getByText(/Add Comment/i))
+
+        const textarea = /** @type {HTMLTextAreaElement} */ (getByPlaceholderText(
+          /Write something/i
+        ))
+        const input = /** @type {HTMLInputElement} */ (getByLabelText(
+          /Your Name/i
+        ))
+
+        expect(textarea.value).toBe('')
+        expect(input.value).toBe('')
       })
     })
   })
