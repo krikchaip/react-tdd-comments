@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 
-function CommentForm() {
+/**
+ * @param {Object} props
+ * @param {(value: { comment: string, author: string }) => void} [props.onSubmit]
+ */
+function CommentForm({ onSubmit }) {
   const [comment, setComment] = useState('')
   const [author, setAuthor] = useState('')
 
+  /** @param {React.FormEvent<HTMLFormElement>} e */
+  function handleSubmit(e) {
+    e.preventDefault()
+    onSubmit({ comment, author })
+  }
+
   return (
-    <form className="comment-form">
+    <form className="comment-form" onSubmit={handleSubmit}>
       <textarea
         className="box"
         placeholder="Write something..."
